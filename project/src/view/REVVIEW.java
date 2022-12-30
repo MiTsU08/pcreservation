@@ -47,6 +47,8 @@ public class REVVIEW extends JFrame {
 		revButton.setBounds(10, 51, 122, 23);
 		getContentPane().add(revButton);
 
+		
+		
 		JButton revSerButton = new JButton("예약내역조회");
 		revSerButton.setBounds(128, 51, 116, 23);
 		getContentPane().add(revSerButton);
