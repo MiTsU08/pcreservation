@@ -69,10 +69,10 @@ public class REVVIEW extends JFrame {
 		J_Frame.setVisible(true);
 		choiceDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				J_Text_Field.setText(new DatePick(J_Frame).Set_Picked_Date());
+				J_Text_Field.setText(new (J_Frame).Set_Picked_Date());
 				getContentPane().add(lblNewLabel);
 				
-				
+				{
 				JLabel lblNewLabel_1 = new JLabel("\uC885\uB8CC\uC2DC\uAC04");
 				lblNewLabel_1.setBounds(369, 254, 57, 15);
 				getContentPane().add(lblNewLabel_1);
