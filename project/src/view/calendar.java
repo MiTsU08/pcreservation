@@ -1,9 +1,10 @@
 package view;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-class DatePick {
+class CalPick {
     int DATE_MONTH = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
     int DATE_YEAR = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);;
     JLabel J_Label = new JLabel("", JLabel.CENTER);
@@ -11,10 +12,10 @@ class DatePick {
     JDialog J_Dialog;
     JButton[] J_Button = new JButton[49];
 
-    public DatePick(JFrame J_Frame_Parent) {
+    public CalPick(JFrame J_Frame_Parent) {
         J_Dialog = new JDialog();
         J_Dialog.setModal(true);
-        String[] Header = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        String[] Header = { "일", "월", "화", "수", "목", "금", "토" };
         JPanel J_Panel1 = new JPanel(new GridLayout(7, 7));
         J_Panel1.setPreferredSize(new Dimension(700, 120));
 
@@ -37,7 +38,7 @@ class DatePick {
             J_Panel1.add(J_Button[i]);
         }
         JPanel J_Panel2 = new JPanel(new GridLayout(1, 3));
-        JButton Previous_Button = new JButton("<< Previous");
+        JButton Previous_Button = new JButton("<< 지난 달");
         Previous_Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 DATE_MONTH--;
@@ -46,7 +47,7 @@ class DatePick {
         });
         J_Panel2.add(Previous_Button);
         J_Panel2.add(J_Label);
-        JButton Next_Button = new JButton("Next >>");
+        JButton Next_Button = new JButton("다음 달 >>");
         Next_Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 DATE_MONTH++;
@@ -54,8 +55,8 @@ class DatePick {
             }
         });
         J_Panel2.add(Next_Button);
-        J_Dialog.add(J_Panel1, BorderLayout.CENTER);
-        J_Dialog.add(J_Panel2, BorderLayout.SOUTH);
+        J_Dialog.getContentPane().add(J_Panel1, BorderLayout.CENTER);
+        J_Dialog.getContentPane().add(J_Panel2, BorderLayout.SOUTH);
         J_Dialog.pack();
         J_Dialog.setLocationRelativeTo(J_Frame_Parent);
         Display_Date();
@@ -66,7 +67,7 @@ class DatePick {
         for (int i = 7; i < J_Button.length; i++)
             J_Button[i].setText("");
         java.text.SimpleDateFormat Simple_Date_Format = new java.text.SimpleDateFormat(
-                "MMMM yyyy");
+                "yyyy MM");
         java.util.Calendar Calendar = java.util.Calendar.getInstance();
         Calendar.set(DATE_YEAR, DATE_MONTH, 1);
         int Day_Of_Week = Calendar.get(java.util.Calendar.DAY_OF_WEEK);
@@ -88,22 +89,22 @@ class DatePick {
     }
 }
 
-public class Calview {
+public class calendar {
     public static void main(String[] args) {
         JLabel J_Label = new JLabel("Date Selected:");
         final JTextField J_Text_Field = new JTextField(20);
-        JButton J_Button = new JButton("Choose the Date");
+        JButton calendarButton = new JButton("Choose the Date");
         JPanel J_Panel = new JPanel();
         J_Panel.add(J_Label);
         J_Panel.add(J_Text_Field);
-        J_Panel.add(J_Button);
+        J_Panel.add(calendarButton);
         final JFrame J_Frame = new JFrame();
         J_Frame.getContentPane().add(J_Panel);
         J_Frame.pack();
         J_Frame.setVisible(true);
-        J_Button.addActionListener(new ActionListener() {
+        calendarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                J_Text_Field.setText(new DatePick(J_Frame).Set_Picked_Date());
+                J_Text_Field.setText(new CalPick(J_Frame).Set_Picked_Date());
             }
         });
     }
